@@ -1,10 +1,12 @@
-import { Building2, CalendarOff, Plus, Users } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import React, { useState } from 'react';
 import { Communities } from '../communities/communities';
 import { People } from '../people/people';
 import { Button } from './Button';
+import { EventSummary } from './eventSummary';
+import { Header } from './Header';
 import { Person } from './Person';
 
 export const App = () => {
@@ -63,25 +65,7 @@ export const App = () => {
   return (
     <>
       {/* header */}
-      <header className="w-full bg-woodsmoke-950 p-4">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <h2 className="text-xl font-semibold text-woodsmoke-50 md:text-2xl">
-            Events Challenge
-          </h2>
-          <select
-            onChange={onSelectCommunity}
-            className="rounded border-[1px] border-woodsmoke-50 bg-woodsmoke-950 p-2 text-woodsmoke-50"
-          >
-            <option>Select a event</option>
-            {communities &&
-              communities.map((community) => (
-                <option key={community._id} value={community._id}>
-                  {community.name}
-                </option>
-              ))}
-          </select>
-        </div>
-      </header>
+      <Header onSelectCommunity={onSelectCommunity} communities={communities} />
 
       {/* event */}
       <main className="mx-auto my-8 max-w-7xl p-4">
@@ -115,43 +99,11 @@ export const App = () => {
               </div>
 
               {/* event summary */}
-              <div className="flex-[1]">
-                <h4 className="mb-8 mt-16 text-2xl">Event Summary</h4>
-                {/* currently in event */}
-                <div>
-                  <span className="flex items-center gap-4 text-woodsmoke-400">
-                    <Users size={30} />
-                    People in the event
-                  </span>
-                  <span className="block text-4xl">{currentInEvent}</span>
-                </div>
-                {/* by company */}
-                <div className="mt-8">
-                  <span className="mb-2 flex items-center gap-4 text-woodsmoke-400">
-                    <Building2 size={30} />
-                    People by company
-                  </span>
-                  {Object.keys(currentInEventByCompany).map((company) => (
-                    <div
-                      key={company + currentInEventByCompany[company]}
-                      className="capitalize"
-                    >
-                      <span>{company}</span>
-                      <span className="ml-2">
-                        ({currentInEventByCompany[company]})
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                {/* not checked in */}
-                <div className="mt-8">
-                  <span className="flex items-center gap-4 text-woodsmoke-400">
-                    <CalendarOff size={30} />
-                    People not checked in
-                  </span>
-                  <span className="block text-4xl">{notCheckedIn}</span>
-                </div>
-              </div>
+              <EventSummary
+                currentInEvent={currentInEvent}
+                currentInEventByCompany={currentInEventByCompany}
+                notCheckedIn={notCheckedIn}
+              />
             </div>
           </div>
         )}
