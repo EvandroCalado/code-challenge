@@ -4,6 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import React, { useState } from 'react';
 import { Communities } from '../communities/communities';
 import { People } from '../people/people';
+import { Button } from './Button';
 
 export const App = () => {
   Meteor.subscribe('totalPeople');
@@ -118,33 +119,33 @@ export const App = () => {
                     </div>
                     {/* button */}
                     {!person.checkedInAt ? (
-                      <button
+                      <Button
                         onClick={() => checkIn(person._id)}
                         type="button"
-                        className="rounded-md border-[1px] bg-woodsmoke-950 px-4 py-2 text-sm font-semibold text-white duration-150 hover:bg-woodsmoke-950/90"
+                        variant="primary"
                       >
                         Check In
-                      </button>
+                      </Button>
                     ) : (
-                      <button
+                      <Button
                         onClick={() => checkOut(person._id)}
                         type="button"
-                        className="rounded-md border-[1px] border-woodsmoke-300 px-4 py-2 text-sm font-semibold duration-150 hover:bg-woodsmoke-100/30"
+                        variant="secondary"
                       >
                         Check Out
-                      </button>
+                      </Button>
                     )}
                   </div>
                 ))}
 
                 <div className="flex items-center justify-center text-center">
-                  <button
+                  <Button
                     onClick={() => setMorePeople(morePeople + 1)}
-                    className="flex items-center gap-2 rounded-md border-[1px] bg-woodsmoke-950 px-6 py-2 text-sm font-semibold text-white duration-150 hover:bg-woodsmoke-950/90"
+                    variant="primary"
                   >
                     <Plus size={22} />
                     More persons
-                  </button>
+                  </Button>
                 </div>
               </div>
 
