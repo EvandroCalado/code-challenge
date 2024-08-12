@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Communities } from '../communities/communities';
 import { People } from '../people/people';
 import { Button } from './Button';
+import { Person } from './Person';
 
 export const App = () => {
   Meteor.subscribe('totalPeople');
@@ -81,6 +82,7 @@ export const App = () => {
           </select>
         </div>
       </header>
+
       {/* event */}
       <main className="mx-auto my-8 max-w-7xl p-4">
         {selectedCommunity && (
@@ -89,55 +91,18 @@ export const App = () => {
             <div className="flex items-start gap-8">
               <div className="flex-[2]">
                 <h4 className="mb-4 mt-16 text-2xl">Attendees</h4>
+
+                {/* person */}
                 {peoples.map((person) => (
-                  // person
-                  <div
+                  <Person
                     key={person._id}
-                    className="my-4 grid grid-cols-4 gap-4 border-b border-woodsmoke-300 pb-4"
-                  >
-                    {/* name */}
-                    <div className="col-span-2">
-                      <h4>
-                        {person.firstName} {person.lastName}
-                      </h4>
-                      <p className="text-xs text-woodsmoke-400">
-                        {person.companyName ?? 'N/A'},
-                        <span className="ml-2 uppercase">
-                          {person.title ?? 'N/A'}
-                        </span>
-                      </p>
-                    </div>
-                    {/* checked */}
-                    <div className="flex flex-col text-sm text-woodsmoke-400">
-                      Checked in:
-                      <span />
-                      <span>
-                        {person.checkedInAt
-                          ? person.checkedInAt.toLocaleString()
-                          : 'N/A'}
-                      </span>
-                    </div>
-                    {/* button */}
-                    {!person.checkedInAt ? (
-                      <Button
-                        onClick={() => checkIn(person._id)}
-                        type="button"
-                        variant="primary"
-                      >
-                        Check In
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => checkOut(person._id)}
-                        type="button"
-                        variant="secondary"
-                      >
-                        Check Out
-                      </Button>
-                    )}
-                  </div>
+                    {...person}
+                    checkIn={() => checkIn(person._id)}
+                    checkOut={() => checkOut(person._id)}
+                  />
                 ))}
 
+                {/* more people button */}
                 <div className="flex items-center justify-center text-center">
                   <Button
                     onClick={() => setMorePeople(morePeople + 1)}
