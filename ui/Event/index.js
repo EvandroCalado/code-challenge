@@ -12,6 +12,7 @@ export const Event = ({
   morePeople,
   setMorePeople,
   totalPeples,
+  noMorePeople,
 }) => {
   const checkIn = async (personId) => {
     await Meteor.callAsync('checkIn', personId);
@@ -59,6 +60,7 @@ export const Event = ({
                   <Button
                     onClick={() => setMorePeople(morePeople + 1)}
                     variant="primary"
+                    disabled={noMorePeople}
                   >
                     More persons
                   </Button>

@@ -40,6 +40,8 @@ export const App = () => {
     (community) => community._id === selectedCommunity
   )[0]?.name;
 
+  const noMorePeople = totalPeples <= peoplePerPage * morePeople;
+
   return (
     <>
       {/* header */}
@@ -53,8 +55,10 @@ export const App = () => {
         morePeople={morePeople}
         setMorePeople={setMorePeople}
         totalPeples={totalPeples}
+        noMorePeople={noMorePeople}
       />
 
+      {/* go to top button */}
       <GoToTop />
     </>
   );
