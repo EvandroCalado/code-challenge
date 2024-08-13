@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Communities } from '../communities/communities';
 import { People } from '../people/people';
 import { Event } from './Event';
+import { GoToTop } from './GoToTop';
 import { Header } from './Header';
 
 export const App = () => {
@@ -53,6 +54,8 @@ export const App = () => {
         setMorePeople={setMorePeople}
         totalPeples={totalPeples}
       />
+
+      <GoToTop />
     </>
   );
 };
