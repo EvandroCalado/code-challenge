@@ -10,7 +10,7 @@ export const EventSummary = ({
     <h4 className="mb-8 mt-16 text-2xl">Event Summary</h4>
 
     {/* currently in event */}
-    <div>
+    <div className="border-b border-woodsmoke-300 pb-4">
       <span className="flex items-center gap-4 text-woodsmoke-400">
         <Users size={30} />
         People in the event
@@ -19,7 +19,7 @@ export const EventSummary = ({
     </div>
 
     {/* by company */}
-    <div className="mt-8">
+    <div className="mt-8 border-b border-woodsmoke-300 pb-4">
       <span className="mb-2 flex items-center gap-4 text-woodsmoke-400">
         <Building2 size={30} />
         People by company
