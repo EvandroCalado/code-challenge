@@ -11,7 +11,7 @@ export const App = () => {
   const [selectedCommunity, setSelectedCommunity] = useState(null);
   const [morePeople, setMorePeople] = useState(1);
 
-  const peoplePerPage = 7;
+  const peoplePerPage = 6;
 
   // meteor
   const { communities, peoples, totalPeples } = useTracker(() => {
