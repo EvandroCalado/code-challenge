@@ -2,6 +2,7 @@ import { Plus } from 'lucide-react';
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Button } from '../Button';
+import { Empty } from '../Empty';
 import { EventSummary } from '../eventSummary';
 import { Person } from '../Person';
 
@@ -54,15 +55,17 @@ export const Event = ({
               ))}
 
               {/* more people button */}
-              <div className="flex items-center justify-center text-center">
-                <Button
-                  onClick={() => setMorePeople(morePeople + 1)}
-                  variant="primary"
-                >
-                  <Plus size={22} />
-                  More persons
-                </Button>
-              </div>
+              {selectedCommunity !== 'Select a event' && (
+                <div className="flex items-center justify-center text-center">
+                  <Button
+                    onClick={() => setMorePeople(morePeople + 1)}
+                    variant="primary"
+                  >
+                    <Plus size={22} />
+                    More persons
+                  </Button>
+                </div>
+              )}
             </div>
 
             {/* event summary */}
@@ -75,7 +78,7 @@ export const Event = ({
         </div>
       )}
 
-      {selectedCommunity === null && <div>OI</div>}
+      {selectedCommunity === null && <Empty />}
     </main>
   );
 };
